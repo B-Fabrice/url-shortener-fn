@@ -18,6 +18,7 @@ const eslintConfig = [
       'quotes': ['error','single'],
       'jsx-quotes': ['error','prefer-single'],
       'indent': ['error', 2],
+      '@typescript-eslint/no-explicit-any': 'off',
       'comma-dangle': [
         'error',
         'never'

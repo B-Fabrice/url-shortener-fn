@@ -1,6 +1,12 @@
 'use client'
 
+import Sidebar from '@/components/dashboard/sidebar'
+import TopBar from '@/components/dashboard/top-bar'
 import React, { createContext, useContext, useState, ReactNode } from 'react'
+import { RootState } from '@/store'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 interface DashboardContextProps {
     isOpen: boolean
@@ -18,11 +24,26 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
   const [collapse, setCollapse] = useState<boolean>(false)
 
+  const { user } = useSelector((state: RootState) => state)
+  const router = useRouter() 
+
+  useEffect(() => {
+    if (!user.tokens && !user.user) {
+      router.push('/login')
+    }
+  }, [user, router])
+
   return (
     <DashboardContext.Provider
       value={{ isOpen, setIsOpen, isDropdownOpen, setIsDropdownOpen, collapse, setCollapse }}
     >
-      {children}
+      <div>
+        <Sidebar />
+        <div  className={`sm:ml-24 transition-all duration-300 ${collapse ? 'lg:ml-24' : 'lg:ml-80'}`}>
+          <TopBar />
+          <main>{children}</main>
+        </div>
+      </div>
     </DashboardContext.Provider>
   )
 }

@@ -2,10 +2,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect } from 'react'
 import { useDashboardContext } from '@/context/dashboard-context'
+import { useLogoutMutation } from '@/actions/auth'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '@/store'
+import { clearUser } from '@/slices/user'
 
 export default function TopBar() {
   const {isOpen, setIsOpen, isDropdownOpen, setIsDropdownOpen } = useDashboardContext()
   const { collapse, setCollapse } = useDashboardContext()
+  const [logout, { isLoading }] = useLogoutMutation()
+  const dispatch: AppDispatch = useDispatch()
+  const { tokens } = useSelector((state: RootState) => state.user)
 
   
   useEffect(() => {
@@ -20,6 +27,12 @@ export default function TopBar() {
       document.removeEventListener('click', handleClickOutside)
     }
   }, [isDropdownOpen, setIsDropdownOpen])
+
+  const handleLogout = async () => {
+    await logout(tokens?.refresh || '')
+    setIsDropdownOpen(false)
+    dispatch(clearUser())
+  }
 
 
   return (
@@ -58,7 +71,7 @@ export default function TopBar() {
           <span className='93847938475'>kwjdkwjb299b</span>
           <span className={`iconify mdi--menu-down w-4 h-4 text-primary group-[.scrolled]:text-primary transition-all duration-300 ${isDropdownOpen ? 'rotate-180' : 'rotate-0'}`}></span>
         </button>
-        <div className={`absolute right-0 top-10 border-[1px] border-primary/20 bg-white shadow-lg rounded-lg p-5 transition-all duration-300 ease-in-out ${isDropdownOpen ? 'translate-y-0' : '-translate-y-5 opacity-0'}`}>
+        <div className={`absolute right-0 top-10 border-[1px] border-primary/20 bg-white shadow-lg rounded-lg p-5 transition-all duration-300 ease-in-out ${isDropdownOpen ? 'block' : 'hidden'}`}>
           <div className='flex gap-5'>
             <span className='rounded-full bg-primary text-white leading-[1px] w-10 h-10 text-center p-3 font-semibold grid items-center'>
               <span>U</span>
@@ -80,13 +93,14 @@ export default function TopBar() {
               </Link>
             ))}
           </div>
-          <Link
-            href='/'
-            onClick={() => setIsDropdownOpen(false)}
-            className='text-primary hover:text-primary/50 py-1'
+          <button
+            onClick={handleLogout}
+            disabled={isLoading}
+            className='text-primary hover:text-primary/50 py-1 flex items-center gap-2 disabled:opacity-50 cursor-pointer'
           >
-                Sign out
-          </Link>
+            Sign out
+            {isLoading && <span className='iconify mdi--dots-circle w-5 h-5 animate-spin'></span>}
+          </button>
         </div>
       </div>
     </nav>

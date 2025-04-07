@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
+import ReduxProvider from '@/providers/redux-provider'
 
 const bitly = localFont({
   src: [
@@ -52,7 +53,9 @@ export default function RootLayout({
       <body
         className={`${bitly.className}`}
       >
-        {children}
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   )
