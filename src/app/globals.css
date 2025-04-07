@@ -7,10 +7,35 @@
   --color-primary: #031f39;
   --color-secondary: #f36600;
   --color-blue: #0058dd;
+  --color-white: #FFFDF8;
 }
 
 body {
   background-color: white;
   line-height: 1.5;
   @apply tracking-wider;
+}
+
+.grid-area-header {
+  grid-area: header;
+}
+.grid-area-main {
+  grid-area: main;
+}
+.grid-area-content {
+  grid-area: content;
+}
+
+.template-areas-auto {
+  grid-template-areas: "header content"
+                      "main content";
+  grid-template-rows: auto 1fr;
+}
+
+label {
+  @apply block mb-2 font-semibold;
+}
+
+input {
+  @apply w-full p-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue;
 }
