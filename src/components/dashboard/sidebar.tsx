@@ -5,7 +5,7 @@ import Link from 'next/link'
 export default function Sidebar() {
   const { collapse, setIsOpen, isOpen } = useDashboardContext()
   return (
-    <aside className={`h-screen border-r-[1px] border-primary/30 sm:w-24 transition-all duration-300 fixed z-50  max-md:inset-0 max-md:top-16 ${collapse ? 'p-5 lg:w-24' : 'p-5 lg:p-8 lg:w-xs'} ${isOpen ? 'max-md:translate-x-0' : 'max-sm:-translate-x-full'}`}>
+    <aside className={`bg-white h-screen border-r-[1px] border-primary/30 sm:w-24 transition-all duration-300 fixed z-50  max-md:inset-0 max-md:top-16 ${collapse ? 'p-5 lg:w-24' : 'p-5 lg:p-8 lg:w-xs'} ${isOpen ? 'max-md:translate-x-0' : 'max-sm:-translate-x-full'}`}>
       <Link href='/' className='hidden sm:block'>
         <Image
           src='/logo.png'

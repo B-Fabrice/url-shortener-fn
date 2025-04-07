@@ -41,7 +41,7 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
         <Sidebar />
         <div  className={`sm:ml-24 transition-all duration-300 ${collapse ? 'lg:ml-24' : 'lg:ml-80'}`}>
           <TopBar />
-          <main>{children}</main>
+          <main className='px-5 py-5 md:px-10 bg-light'>{children}</main>
         </div>
       </div>
     </DashboardContext.Provider>

@@ -36,7 +36,7 @@ export default function TopBar() {
 
 
   return (
-    <nav className='py-4 px-5 md:px-10 border-b-[1px] border-primary/30 flex items-center justify-between sm:justify-end relative'>
+    <nav className='bg-white py-4 px-5 md:px-10 border-b-[1px] border-primary/30 flex items-center justify-between sm:justify-end relative'>
       <button
         onClick={() => setCollapse(!collapse)}
         className='hidden lg:grid cursor-pointer absolute -bottom-3 -left-3 bg-white rounded-full border-2 border-primary/20 justify-center items-center z-50  w-7 h-7'

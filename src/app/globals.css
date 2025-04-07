@@ -7,11 +7,11 @@
   --color-primary: #031f39;
   --color-secondary: #f36600;
   --color-blue: #0058dd;
-  --color-white: #FFFDF8;
+  --color-light: #FFFDF8;
 }
 
 body {
-  background-color: white;
+  background-color: light;
   line-height: 1.5;
   @apply tracking-wider;
 }

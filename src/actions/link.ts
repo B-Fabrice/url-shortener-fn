@@ -1,7 +1,7 @@
 import { RootState } from '@/store'
 import { BaseQueryApi, createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export const authApi = createApi({
+export const linkApi = createApi({
   reducerPath: 'linkApi',
   baseQuery: fetchBaseQuery({
     baseUrl: '/api/shorten',
@@ -29,4 +29,4 @@ export const authApi = createApi({
 export const {
   useShortenMutation,
   useMyLinksQuery
-} = authApi
+} = linkApi

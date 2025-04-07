@@ -65,7 +65,7 @@ export default function Login() {
             </Link>
           </div>
           <div className='my-10 relative border-primary/20 border-[.1px]'>
-            <p className='px-5 bg-white absolute mx-auto inset-x-0 w-fit -top-3'>OR</p>
+            <p className='px-5 bg-light absolute mx-auto inset-x-0 w-fit -top-3'>OR</p>
           </div>
           <fieldset className='w-full flex flex-col gap-3 md:gap-5' disabled={isLoading}>
             <div className=''>
@@ -114,7 +114,7 @@ export default function Login() {
             <button
               type='submit'
               disabled={isLoading}
-              className='bg-blue cursor-pointer text-white py-2 px-5 mt-5 rounded flex gap-5 items-end justify-center text-lg transition-all duration-300 hover:bg-blue/80 disabled:opacity-50'
+              className='bg-blue cursor-pointer text-light py-2 px-5 mt-5 rounded flex gap-5 items-end justify-center text-lg transition-all duration-300 hover:bg-blue/80 disabled:opacity-50'
             >
               <span className=''>Create Account</span>
               {isLoading && <span className='iconify mdi--dots-circle w-5 h-5 animate-spin'></span>}

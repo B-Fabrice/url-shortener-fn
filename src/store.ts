@@ -3,6 +3,7 @@ import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/es/storage'
 import userSlice from '@/slices/user'
 import { authApi } from '@/actions/auth'
+import { linkApi } from '@/actions/link'
 
 
 const persistConfig = {
@@ -13,7 +14,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userSlice,
-  [authApi.reducerPath]: authApi.reducer
+  [authApi.reducerPath]: authApi.reducer,
+  [linkApi.reducerPath]: linkApi.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -23,7 +25,8 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: false
   }).concat([
-    authApi.middleware
+    authApi.middleware,
+    linkApi.middleware
   ])
 })
 

@@ -15,9 +15,9 @@ export default function Navbar() {
         const scrollTop = window.scrollY
         const navbarHeight = navbarRef.current.offsetHeight
         if (scrollTop > navbarHeight) {
-          navbarRef.current.classList.add('scrolled', 'bg-white', 'border-b-2', 'border-b-gray-200')
+          navbarRef.current.classList.add('scrolled', 'bg-light', 'border-b-2', 'border-b-gray-200')
         } else {
-          navbarRef.current.classList.remove('scrolled', 'bg-white', 'border-b-2', 'border-b-gray-200')
+          navbarRef.current.classList.remove('scrolled', 'bg-light', 'border-b-2', 'border-b-gray-200')
         }
       }
     }
@@ -56,7 +56,7 @@ export default function Navbar() {
             <Link
               key={index}
               href={link.href}
-              className='text-white group-[.scrolled]:text-primary transition-all duration-300 font-medium text-lg'
+              className='text-light group-[.scrolled]:text-primary transition-all duration-300 font-medium text-lg'
             >
               {link.label}
             </Link>
@@ -65,13 +65,13 @@ export default function Navbar() {
         <div className='hidden md:flex items-center gap-5 lg:gap-10'>
           <Link
             href='/login'
-            className='text-white group-[.scrolled]:text-primary transition-all duration-300 font-medium text-lg'
+            className='text-light group-[.scrolled]:text-primary transition-all duration-300 font-medium text-lg'
           >
             Login
           </Link>
           <Link
             href='/login'
-            className='bg-white group-[.scrolled]:bg-blue group-[.scrolled]:hover:bg-blue/50 color-white py-[7px] px-4 font-medium rounded-lg hover:bg-white/50 text-primary group-[.scrolled]:text-white transition-all duration-300'
+            className='bg-light group-[.scrolled]:bg-blue group-[.scrolled]:hover:bg-blue/50 color-light py-[7px] px-4 font-medium rounded-lg hover:bg-light/50 text-primary group-[.scrolled]:text-light transition-all duration-300'
           >
             Signup Free
           </Link>
@@ -80,10 +80,10 @@ export default function Navbar() {
           className='md:hidden cursor-pointer'
           onClick={() => setIsOpen(!isOpen)}
         >
-          <span className={`iconify ${isOpen ? 'mdi--close' : 'mdi--menu'} w-8 h-8 text-white group-[.scrolled]:text-primary transition-all duration-300`}></span>
+          <span className={`iconify ${isOpen ? 'mdi--close' : 'mdi--menu'} w-8 h-8 text-light group-[.scrolled]:text-primary transition-all duration-300`}></span>
         </button>
         <div
-          className={`md:hidden fixed top-20 left-0 w-full bottom-0 bg-white flex p-10 flex-col items-start justify-between gap-5 transition-all duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          className={`md:hidden fixed top-20 left-0 w-full bottom-0 bg-light flex p-10 flex-col items-start justify-between gap-5 transition-all duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
         >
           <div className='flex flex-col gap-5'>
             {navLinks.map((link, index) => (

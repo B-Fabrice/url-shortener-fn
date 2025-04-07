@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className='px-5 py-10 md:px-10 md:py-20 bg-primary border-t-2 border-secondary text-white'>
+    <footer className='px-5 py-10 md:px-10 md:py-20 bg-primary border-t-2 border-secondary text-light'>
       <div className='max-w-6xl mx-auto'>
         <div className='pb-10 columns-1 md:columns-3 lg:columns-6 gap-10 md:gap-20'>
           {Array.from({ length: 6 }, (_, index) => (
@@ -14,7 +14,7 @@ export default function Footer() {
                   <Link
                     key={index}
                     href='#'
-                    className='text-white/80 hover:text-white transition-all duration-300 text-sm font-normal block'
+                    className='text-light/80 hover:text-light transition-all duration-300 text-sm font-normal block'
                   >
                     Solution {index + 1}
                   </Link>
@@ -23,10 +23,10 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className='flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/20'>
+        <div className='flex flex-col md:flex-row justify-between items-center pt-10 border-t border-light/20'>
           <Link
             href='/'
-            className='text-white font-bold text-2xl'
+            className='text-light font-bold text-2xl'
           >
             <Image
               src='/logo.png'
