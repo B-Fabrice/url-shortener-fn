@@ -1,13 +1,16 @@
 'use client'
 
 import { navLinks } from '@/data'
+import { RootState } from '@/store'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 export default function Navbar() {
   const navbarRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const user = useSelector((state: RootState) => state.user)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,20 +65,29 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-        <div className='hidden md:flex items-center gap-5 lg:gap-10'>
-          <Link
-            href='/login'
-            className='text-light group-[.scrolled]:text-primary transition-all duration-300 font-medium text-lg'
-          >
+        {(user.tokens && user.user) ? 
+          <div className='hidden md:flex items-center gap-5 lg:gap-10'>
+            <Link
+              href='/dashboard'
+              className='bg-light group-[.scrolled]:bg-blue group-[.scrolled]:hover:bg-blue/50 color-light py-[7px] px-4 font-medium rounded-lg hover:bg-light/50 text-primary group-[.scrolled]:text-light transition-all duration-300'
+            >
+            Dashboard
+            </Link>
+          </div>
+          : <div className='hidden md:flex items-center gap-5 lg:gap-10'>
+            <Link
+              href='/login'
+              className='text-light group-[.scrolled]:text-primary transition-all duration-300 font-medium text-lg'
+            >
             Login
-          </Link>
-          <Link
-            href='/login'
-            className='bg-light group-[.scrolled]:bg-blue group-[.scrolled]:hover:bg-blue/50 color-light py-[7px] px-4 font-medium rounded-lg hover:bg-light/50 text-primary group-[.scrolled]:text-light transition-all duration-300'
-          >
+            </Link>
+            <Link
+              href='/login'
+              className='bg-light group-[.scrolled]:bg-blue group-[.scrolled]:hover:bg-blue/50 color-light py-[7px] px-4 font-medium rounded-lg hover:bg-light/50 text-primary group-[.scrolled]:text-light transition-all duration-300'
+            >
             Signup Free
-          </Link>
-        </div>
+            </Link>
+          </div>}
         <button
           className='md:hidden cursor-pointer'
           onClick={() => setIsOpen(!isOpen)}
@@ -97,22 +109,32 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-          <div className='flex flex-col gap-5 w-full text-center'>
-            <Link
-              href='/login'
-              className='text-primary font-medium text-lg'
-              onClick={() => setIsOpen(false)}
-            >
+          {(user.tokens && user.user) ? 
+            <div  className='flex flex-col gap-5 w-full text-center'>
+              <Link
+                href='/dashboard'
+                className='border-2 border-blue w-full text-blue py-[6px] px-4 font-medium rounded-lg transition-all duration-300'
+                onClick={() => setIsOpen(false)}
+              >
+              Dashboard
+              </Link>
+            </div>
+            : <div className='flex flex-col gap-5 w-full text-center'>
+              <Link
+                href='/login'
+                className='text-primary font-medium text-lg'
+                onClick={() => setIsOpen(false)}
+              >
             Login
-            </Link>
-            <Link
-              href='/login'
-              className='border-2 border-blue w-full text-blue py-[6px] px-4 font-medium rounded-lg transition-all duration-300'
-              onClick={() => setIsOpen(false)}
-            >
+              </Link>
+              <Link
+                href='/login'
+                className='border-2 border-blue w-full text-blue py-[6px] px-4 font-medium rounded-lg transition-all duration-300'
+                onClick={() => setIsOpen(false)}
+              >
             Signup Free
-            </Link>
-          </div>
+              </Link>
+            </div>}
         </div>
       </div>
     </nav>
